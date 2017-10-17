@@ -10,5 +10,4 @@ Peformed:
 1. Permutation test
 2. Wilcoxon Sum Rank Test
 3. T Test (Not a nonparametric test, but was used to compare results to wilcoxon sum rank test) 
-4. Hodeges Lehmann  
-5 Kolmogorov-Smirnov Test
+4. Hodeges Lehmann                                                                                                                        5 Kolmogorov-Smirnov Test
