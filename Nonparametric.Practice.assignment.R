@@ -2,7 +2,7 @@
 
 ##############################################################
 
-#Question 1: The carapace lengths (in mm) of cray???sh were recorded for samples from two sections of a stream in Kansas.
+#Question 1: The carapace lengths (in mm) of crayfsh were recorded for samples from two sections of a stream in Kansas.
 
 
 ##############################################################
@@ -11,7 +11,7 @@
 s1 <- c(5,11,16,8,12)
 s2 <- c(17,14,15,21,19,13)
 
-#(a)Test for di???erences between the two sections using a permutation test.
+#(a)Test for differences between the two sections using a permutation test.
 #H0: u(s1) = u(s2)
 #Ha: u(s1) is no equal u(s2)
 library(gtools)
