@@ -2,8 +2,7 @@
 
 ##############################################################
 
-#Question 1: The carapace lengths (in mm) of cray???sh were recorded for samples from two sections of a stream in Kansas.
-
+#Question 1: The carapace lengths (in mm) of crayfsh were recorded for samples from two sections of a stream in Kansas.
 
 ##############################################################
 
@@ -11,12 +10,12 @@
 s1 <- c(5,11,16,8,12)
 s2 <- c(17,14,15,21,19,13)
 
-#(a)Test for di???erences between the two sections using a permutation test.
+#(a)Test for differences between the two sections using a permutation test.
 #H0: u(s1) = u(s2)
 #Ha: u(s1) is no equal u(s2)
 library(gtools)
   
-
+#Create permutation function
 perm.2sample = function(x, y, alternative = c("two.sided", "less", "greater"), stat=c("meandiff", "mediandiff", "trmdiff", "sumX"), trim=0)
 {
   # exact permutation
@@ -62,21 +61,19 @@ perm.2sample = function(x, y, alternative = c("two.sided", "less", "greater"), s
   return(list(pval=pval, Dobs=D[1]))
 }
 
-
+#Use new permutation function
 perm.2sample(s1,s2, alternative = "two.sided", stat = "meandiff") #pvalue is .023 and is less than the common level of signfiance of alpha = .05, which means reject the null hypothesis. 
 ## The two sections have different means. 
 
-##(b) Test for di???erences using the Wilcoxon rank-sum test.
+##(b) Test for differences using the Wilcoxon rank-sum test.
 
 wilcox.test(s1,s2, alternative = "two.sided") # pvalue is .0303. Different p value, but the result is the same. Still a low pvalue so reject null and accept that two sections have different means. 
 
 
 #################################################################################
 
-
 ##Question 2: Student in an introductor stats class were asked how many brothers and sisters
 #they have and whether their hometown is urban or rural
-
 
 ################################################################################
 
@@ -105,9 +102,7 @@ qqplot(R,U) # the graph doesn't look normal at all. So wilcox.test would be bett
 
 ##############################################################
 
-
 #Question 3:  The carapace lengths (in mm) of cray???sh were recorded for samples from two sections of a stream in Kansas.
-
 
 #############################################################
 
@@ -128,7 +123,7 @@ mean(pwd)  ##mean is -6.1
 library(DescTools)
 HodgesLehmann(S1, S2, conf.level = .90, na.rm=FALSE) #est = -6 and lower CI is -10 and upper is -2 (90% CI)
 
-##Or
+##OR
 wilcox.test(S1,S2, conf.int = "T", conf.level = .9) #est = -6 and lower CI is -10 and upper is -2 (90% CI)
 
 #(c) The difference of location between S1 and S2 is estmated to be -6. That means there is about a -6 swift from S1 to S2 location. 
@@ -145,7 +140,7 @@ wilcox.test(S1,S2, conf.int = "T", conf.level = .9) #est = -6 and lower CI is -1
 A <- c(5.1, 9.4, 7.2, 8.1, 8.8)
 B <- c(2.5, 4.2, 6.9, 5.5, 5.3)
 
-#Question: Test for di???erences between the distributions of the nesting heights of the two species.
+#Question: Test for differences between the distributions of the nesting heights of the two species.
 ##Kolmogorov-Smirnov Test
 plot(ecdf(A), vertical = T)
 lines(ecdf(B), vertical = T, col = "red", lty = "dashed")
