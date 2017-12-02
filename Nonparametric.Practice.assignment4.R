@@ -1,18 +1,24 @@
-#5.2 Generate the permutation distribution of Spearman's r, (see Section 5.2) and Kendall's t (Section 5.3) for teh data in exercise 1
+#5.2 Generate the permutation distribution of Spearman's r, (see Section 5.2) and Kendall's t (Section 5.3) for the data in exercise 1
 H <- c(68, 70, 74)
 W <- c(145, 155, 160)
 
-#Spearman correlation
-(rs.obs <- cor(rank(H),rank(W)))
+#Number of permatations
+factorial(length(H))
 
-#perm tes for spearman correlation
-permr <- perm.approx.r(rank(H),rank(W), 1000)
-permr #Use word to show large perm distribution
+#Pearson's Permutation Distribution
+library(combinat)  # for function "permn"
+pcor <- sapply(permn(H), y=W, method="pearson", cor)
+pcor
+
+#Spearman's Permutation Distribution
+library(combinat)  # for function "permn"
+spcor <- sapply(permn(H), y=W, method="spearman", cor)
+spcor
 
 
-#kendalls
-permtau <- perm.approx.tau(H,W, 1000)
-permtau #Use word to show distribution
+#Kendall's Permutation Distribution 
+ktau <- sapply(permn(H), y=W, method="kendall", cor)
+ktau
 
 
 #5.3 
@@ -22,8 +28,6 @@ permtau #Use word to show distribution
 A <- c(3, 7, 15, 24, 85, 180, 360)
 S <- c(2500, 3200, 4300, 5300, 5900, 6700, 6900)
 plot(A,S)
-rank(A)
-rank(S)
 
 #Pearson's correlation
 (rp.obs = cor(A, S))
@@ -33,23 +37,17 @@ rank(S)
 
 #Kendall's tau
 Tau <- getTau.notie(A,S)
-
+Tau
 
 #b) Test for significant association using each of teh measures of assocation in part a
 
 #Pearson's check for association
-permr <- perm.approx.r(A, S, 1000)
-mean(permr >= rp.obs) #pvalue is 0 so H0 that there is no assication rejected. There is an assocation
 cor.test(A, S , method = "pearson") #pvalue is .03, so reject no assocation at alpha =.05
+
 #Spearman's check for assocation
-permr <- perm.approx.r(rank(A), rank(S), 1000)
-mean(permr >= rs.obs) ##pvalue is 0 so H0 that there is no assication rejected. There is an assocation
 cor.test(A, S , method = "spearman") #pvalue is below .005 so reject H0. 
 
-
 #Kendall's check for assocation
-permt <- perm.approx.tau(A,S, 1000)
-mean(permt >= Tau) ##pvalue is 0 so H0 that there is no assication rejected. There is an assocation
 cor.test(A,S, method = "kendall") ##pvalue is 0 so H0 that there is no assication rejected. There is an assocation
 
 #8.5 treat mean soil moisture readings as the response variable in Ex5.5.
